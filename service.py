@@ -239,14 +239,6 @@ class Tool:
     # =======================================================================================================
     @staticmethod
     def calculate_metric(article):
-        '''
-        newest_comment = Comment.query.filter_by(article_id=article.id).last()
-        Avisit = math.log(article.visit, 10) * 4
-        Ascore = article.upvote - article.downvote
-        Aage = (newest_comment.time - article.time).seconds
-        metric = Avisit * Ascore / Aage
-        article.metric = metric
-        '''
         likes = article.upvote
         dislikes = article.downvote
         visits = article.visit
@@ -392,18 +384,7 @@ def get_subject(subjectID):
         Article.metric > threshold
     ).all()
 
-    '''
-    if a:
 
-        pivot = random.randint(1, len(a))
-
-        print(pivot)
-
-        for x in a:
-            total += 1
-            if pivot == total:
-                hot_article = x
-    '''
     for x in a:
         hot_article.append(x)
 
