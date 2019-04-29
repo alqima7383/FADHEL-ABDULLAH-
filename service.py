@@ -5,6 +5,7 @@ from flask import Flask, flash, request, redirect, url_for, session, jsonify, re
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 from flask import Flask
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 UPLOAD_FOLDER = basedir + '\static\pdf'
 ALLOWED_EXTENSIONS = set(['pdf'])
@@ -18,7 +19,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 db = SQLAlchemy(app)
-IP = '127.0.0.10'
+#IP = '127.0.0.10'
+IP = get_host_ip()
 class Author(db.Model):
     __tablename__ = 'authors'
     id = db.Column(db.Integer, primary_key=True)
@@ -719,6 +721,22 @@ def author(author_id):
     articles = Article.query.order_by(Article.time.desc()).filter_by(author_id=author_id).all()
     comments = Comment.query.order_by(Comment.time.desc()).filter_by(author_id=author_id).all()
     return render_template('author.html', articles=articles, comments=comments, Tool=Tool)
+	
+	
+def get_host_ip():
+    """
+    get the host ip
+    :return: ip
+    """
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('8.8.8.8', 80))
+        ip = s.getsockname()[0]
+    finally:
+        s.close()
+ 
+    return ip
+
 
 
 
