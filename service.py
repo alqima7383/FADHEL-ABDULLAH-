@@ -401,9 +401,9 @@ def get_subject(subjectID):
 # ============================================================================================
 @app.before_request
 def before_request():
-    #ip = str(request.remote_addr)
+    ip = str(request.remote_addr)
     #ip = '127.0.0.5'
-    ip = request.remote_addr
+    #ip = request.remote_addr
     session['ip'] = ip
     visitor = Visitor.query.filter_by(ip=ip).first()
     if visitor is None:
