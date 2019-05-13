@@ -723,19 +723,7 @@ def author(author_id):
     return render_template('author.html', articles=articles, comments=comments, Tool=Tool)
 	
 	
-def get_host_ip():
-    """
-    get the host ip
-    :return: ip
-    """
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(('8.8.8.8', 80))
-        ip = s.getsockname()[0]
-    finally:
-        s.close()
- 
-    return ip
+
 
 
 
