@@ -7,20 +7,20 @@ from datetime import datetime, timedelta
 from flask import Flask
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-UPLOAD_FOLDER = basedir + '\static\pdf'
+UPLOAD_FOLDER = basedir + '/static/pdf'
 ALLOWED_EXTENSIONS = set(['pdf'])
 threshold = 100000
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
-app.config['UPLOAD_FOLDER'] = os.path.join(basedir+'\static\pdf')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir+'\database.sqlite')
+app.config['UPLOAD_FOLDER'] = os.path.join(basedir+'/static/pdf')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir+'/database.sqlite')
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 db = SQLAlchemy(app)
-#IP = '127.0.0.10'
-IP = get_host_ip()
+IP = '0.0.0.0'
+#IP = get_host_ip()
 class Author(db.Model):
     __tablename__ = 'authors'
     id = db.Column(db.Integer, primary_key=True)
@@ -403,7 +403,7 @@ def get_subject(subjectID):
 def before_request():
     #ip = str(request.remote_addr)
     #ip = '127.0.0.5'
-    ip = IP
+    ip = request.remote_addr
     session['ip'] = ip
     visitor = Visitor.query.filter_by(ip=ip).first()
     if visitor is None:
@@ -741,7 +741,7 @@ def get_host_ip():
 
 
 if __name__ == '__main__':
-    app.run(port=8080, debug=True)
+    app.run(host='0.0.0.0',port=8001, debug=False)
 
 
 
