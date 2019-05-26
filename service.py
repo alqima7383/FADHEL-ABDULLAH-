@@ -288,7 +288,7 @@ def article_upvote(articleID):
         db.session.add(articlevote)
         db.session.add(article)
     else:
-        return jsonify({'ht': 'you has been voted, please do not submit repeatedly', 'upvote': article.upvote})
+        return jsonify({'ht': 'You have voted, please do not submit again', 'upvote': article.upvote})
     return jsonify({'upvote': article.upvote})
 
 
@@ -310,7 +310,7 @@ def article_downvote(articleID):
         db.session.add(articlevote)
         db.session.add(article)
     else:
-        return jsonify({'ht': 'you has been voted, please do not submit repeatedly', 'downvote': article.downvote})
+        return jsonify({'ht': 'You have voted, please do not submit again', 'downvote': article.downvote})
     return jsonify({'downvote': article.downvote})
 
 
@@ -329,7 +329,7 @@ def comment_upvote(commentID):
         db.session.add(commentvote)
         db.session.add(comment)
     else:
-        return jsonify({'ht': 'you has been voted, please do not submit repeatedly', 'upvote': comment.upvote})
+        return jsonify({'ht': 'You have voted, please do not submit again', 'upvote': comment.upvote})
     return jsonify({'upvote': comment.upvote})
 
 
@@ -348,7 +348,7 @@ def comment_downvote(commentID):
         db.session.add(commentvote)
         db.session.add(comment)
     else:
-        return jsonify({'ht': 'you has been voted, please do not submit repeatedly', 'downvote': comment.downvote})
+        return jsonify({'ht': 'You have voted, please do not submit again', 'downvote': comment.downvote})
     return jsonify({'downvote': comment.downvote})
 
 
