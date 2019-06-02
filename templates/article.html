@@ -95,7 +95,7 @@
 
     <p class="card-text bp">publication date<br></p><p>&nbsp;{{ article.time.strftime("%Y-%m-%d %H:%M") }}</p><br><br><!--publication date-->
 
-    <p class="card-text bp">-author<br></p>&nbsp;<a href="{{ url_for('author', author_id=article.author_id) }}">{{ Tool.email_display_filter(article.author.mail) }}</a><br><br><!--author-->
+    <p class="card-text bp">author<br></p>&nbsp;<a href="{{ url_for('author', author_id=article.author_id) }}">{{ Tool.email_display_filter(article.author.mail) }}</a><br><br><!--author-->
 
     <br><br>
 
