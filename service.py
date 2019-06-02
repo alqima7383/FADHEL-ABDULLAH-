@@ -708,7 +708,7 @@ def search():
 
 
 
-    return render_template('search.html', articles=articles, comments=comments, Tool=Tool, message=message)
+    return render_template('search.html', articles=articles, comments=comments, Tool=Tool, message=message, content=content)
 
 
 @app.route('/error/<message>')
